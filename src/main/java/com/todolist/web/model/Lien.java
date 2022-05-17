@@ -4,11 +4,13 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@IdClass(DoubleId.class)
 public class Lien {
     @Id
     @ManyToOne
     private Users user;
 
+    @Id
     @ManyToOne
     private Task task;
 

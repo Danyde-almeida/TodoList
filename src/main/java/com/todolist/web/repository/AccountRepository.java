@@ -11,7 +11,6 @@ public interface AccountRepository extends JpaRepository<Users, String> {
 
 
     public boolean existsByLogin(String login);
-
     public boolean existsByLoginAndPassword(String login, String mp);
 
 }

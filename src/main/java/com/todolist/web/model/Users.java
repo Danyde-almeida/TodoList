@@ -15,7 +15,7 @@ public class Users {
     private String nom;
     private String prenom;
 
-    @OneToMany(MappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private List<Lien> lien;
 
 

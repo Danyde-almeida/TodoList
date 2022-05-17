@@ -20,5 +20,4 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private List<Lien> lien;
 
-
 }
