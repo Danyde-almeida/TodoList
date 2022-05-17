@@ -9,15 +9,20 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUser;
 
-    @Column(length = 30)
+    @Column(length = 50)
     private String login;
+
+    @Column(length = 50)
     private String password;
+
+    @Column(length = 50)
     private String nom;
+
+    @Column(length = 50)
     private String prenom;
 
     @OneToMany(mappedBy = "user")
     private List<Lien> lien;
-
 
     public Users() {
         super();

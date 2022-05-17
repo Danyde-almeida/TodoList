@@ -27,7 +27,7 @@
                         <img
                                 src="https://www.missnumerique.com/blog/wp-content/uploads/photographie-de-nuit-objectif-grand-angle.jpg"
                                 alt="login form"
-                                class="img-fluid" style="border-radius: 1rem 0 0 1rem;"
+                                class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%;"
                         />
                     </div>
                     <div class="col-md-6 col-lg-7 d-flex align-items-center">
@@ -66,7 +66,7 @@
 
                                 <div class="form-outline mb-2">
                                     <label class="form-label" for="password">Mot de passe</label>
-                                    <input type="password" id="password" value="${ password}" name="password" class="form-control form-control-lg" required="required" />
+                                    <input type="password" id="password" value="${password}" name="password" class="form-control form-control-lg" required="required" />
                                 </div>
 
                                 <div class="pt-1 mb-2">

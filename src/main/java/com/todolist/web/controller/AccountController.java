@@ -43,7 +43,7 @@ public class AccountController {
         } else if (loginService.verifierAuthentif(login, password)) {
             model.addObject("identifiant", login);
             System.out.println("3");
-            model.setViewName("welcome");
+            model.setViewName("todo-list");
             return model;
         } else {
             model.addObject("errorMessage", "Login ou mot de passe incorrect");
@@ -73,9 +73,9 @@ public class AccountController {
             c.setNom(nom);
             c.setPrenom(prenom);
             loginService.creeCompte(c);
-            model.setViewName("welcome");
+            model.setViewName("todo-list");
         } else {
-            model.addObject("erreur", "Compte déjà existant");
+            model.addObject("errorMessage", "Compte déjà existant");
             model.setViewName("inscription");
             return model;
         }
