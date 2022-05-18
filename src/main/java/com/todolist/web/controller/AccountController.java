@@ -31,25 +31,21 @@ public class AccountController {
             model.addObject("login", login);
             model.addObject("mp", password);
             model.setViewName("login");
-            System.out.println("1");
             return model;
         } else if (loginService.emptyPassword(password)) {
             model.addObject("errorMessage", "Veuillez saisir votre mot de passe");
             model.addObject("login", login);
             model.addObject("mp", password);
             model.setViewName("login");
-            System.out.println("2");
             return model;
         } else if (loginService.verifierAuthentif(login, password)) {
             model.addObject("identifiant", login);
-            System.out.println("3");
             model.setViewName("todo-list");
             return model;
         } else {
             model.addObject("errorMessage", "Login ou mot de passe incorrect");
             model.addObject("login", login);
             model.addObject("mp", password);
-            System.out.println("4");
             model.setViewName("login");
             return model;
         }

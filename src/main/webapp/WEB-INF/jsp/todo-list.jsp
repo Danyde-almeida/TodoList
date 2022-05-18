@@ -60,8 +60,8 @@
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="date">Date</label>
-                                    <input type="date" id="date" value="${data}" name="password"
+                                    <label class="form-label" for="date">Date de fin</label>
+                                    <input type="date" id="date" value="${date}" name="password"
                                            class="form-control form-control-lg" required="required"/>
                                 </div>
                                 <br>
