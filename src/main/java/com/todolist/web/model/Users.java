@@ -28,6 +28,12 @@ public class Users {
         super();
     }
 
+    public int getIdUser() {
+        return idUser;
+    }
+    public void setIdUser(int idUser ) {
+        this.idUser = idUser;
+    }
     public String getLogin() {
         return login;
     }
@@ -58,6 +64,6 @@ public class Users {
     }
 
     public String toString() {
-        return "Users [login= " + login + ", mp= " + password + " ]";
+        return "Users: [id = " + idUser + " login = " + login + " + nom = " + nom + " prenom = "+ prenom + " ]";
     }
 }

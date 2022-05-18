@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+import java.util.List;
+
 @Controller
 public class AccountController {
 
@@ -23,9 +26,8 @@ public class AccountController {
     }
 
     @PostMapping(value = "/login")
-    public ModelAndView verifierLogin(@RequestParam String login, @RequestParam String password) {
+    public ModelAndView verifierLogin(@RequestParam String login, @RequestParam String password, HttpSession session) {
         ModelAndView model = new ModelAndView();
-
         if (loginService.emptyLogin(login)) {
             model.addObject("errorMessage", "Veuillez saisir votre login");
             model.addObject("login", login);
@@ -39,8 +41,15 @@ public class AccountController {
             model.setViewName("login");
             return model;
         } else if (loginService.verifierAuthentif(login, password)) {
-            model.addObject("identifiant", login);
-            model.setViewName("todo-list");
+            //On récupère le user qui se connecte a la bd
+            Users user = loginService.getUser(login);
+            //On récupère tout les users de la BDD sauf le user connecté
+            List<Users> users = loginService.getAllUser();
+            users.remove(user);
+            session.setAttribute("id", user.getLogin());
+            session.setAttribute("username", user.getLogin());
+            session.setAttribute("list_users", users);
+            model.setViewName("redirect:todo-list");
             return model;
         } else {
             model.addObject("errorMessage", "Login ou mot de passe incorrect");
@@ -59,17 +68,21 @@ public class AccountController {
     }
 
     @PostMapping(value = "/register")
-    public ModelAndView register(@RequestParam String login, @RequestParam String password,@RequestParam String nom,@RequestParam String prenom) {
+    public ModelAndView register(@RequestParam String login, @RequestParam String password,@RequestParam String nom,@RequestParam String prenom,HttpSession session) {
         ModelAndView model = new ModelAndView();
-
         if (!loginService.verifierCompteExistant(login)) {
-            Users c = new Users();
-            c.setLogin(login);
-            c.setPassword(password);
-            c.setNom(nom);
-            c.setPrenom(prenom);
-            loginService.creeCompte(c);
-            model.setViewName("todo-list");
+            Users user = new Users();
+            user.setLogin(login);
+            user.setPassword(password);
+            user.setNom(nom);
+            user.setPrenom(prenom);
+            loginService.creeCompte(user);
+            List<Users> users = loginService.getAllUser();
+            users.remove(user);
+            session.setAttribute("id", user.getLogin());
+            session.setAttribute("username", user.getLogin());
+            session.setAttribute("list_users", users);
+            model.setViewName("redirect:todo-list");
         } else {
             model.addObject("errorMessage", "Compte déjà existant");
             model.setViewName("inscription");

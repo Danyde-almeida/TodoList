@@ -12,19 +12,4 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LienController {
 
-    @Autowired
-    AccountService loginService;
-
-    /* Partie Connexion d'un utilisateur */
-
-    @GetMapping(value = "/todo-list")
-    public String showLogin() {
-        return "todo-list";
-    }
-
-    @PostMapping(value = "/todo-list")
-    public ModelAndView verifierLogin(@RequestParam String login, @RequestParam String password) {
-        ModelAndView model = new ModelAndView();
-        return model;
-    }
 }
