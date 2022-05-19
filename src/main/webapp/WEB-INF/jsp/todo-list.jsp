@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Polytech Chat 2022</title>
+    <title>Polytech Todo 2022</title>
 
     <!-- Include the JQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -44,6 +44,9 @@
 </head>
 
 <body>
+
+<%@ include file="navbar.jsp"%>
+
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
@@ -173,62 +176,6 @@
                                                 <input type="checkbox" id="horns" name="horns">
                                                 <label for="horns">Horns</label>
                                             </li>
-                                        </ul>
-                                    </nav>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
-            <div class="card" style="border-radius: 1rem;">
-                <div class="row g-0">
-                    <div class="col-md-6 col-lg-6 d-flex align-items-center">
-                        <div class="card-body p-4 p-lg-5 text-black">
-                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Ajouter une Task à votre ToDo-List</h5>
-                            <form method="post">
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="nameTask">Nom de la tache:</label>
-                                    <input type="text" id="nameTask" value="${nameTask}" name="nameTask"
-                                           class="form-control form-control-lg" required="required"/>
-                                </div>
-
-                                <div class="form-outline mb-4">
-                                    <label class="form-label" for="dateFin">Date de fin</label>
-                                    <input type="date" id="dateFin" value="${dateFin}" name="dateFin"
-                                           class="form-control form-control-lg" required="required"/>
-                                </div>
-                                <br>
-                                <div class="pt-1 mb-4">
-                                    <button class="btn btn-dark btn-lg btn-block">Valider</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6 d-flex align-items-center">
-                        <div class="card-body p-4 p-lg-5 text-black">
-                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Partagée à:</h5>
-                            <form method="post">
-                                <div class="scroll">
-                                    <nav>
-                                        <ul>
-                                            <c:if test='${sessionScope.list_users == [] }'>
-                                                <h4>Aucune personne disponible</h4>
-                                            </c:if>
-                                            <c:forEach var="user" items="${sessionScope.list_users}">
-                                                <li>
-                                                    <input type="checkbox" id="${user.idUser}" name="${user.idUser}">
-                                                    <label for="${user.idUser}">${user.nom} ${user.prenom}</label>
-                                                </li>
-                                            </c:forEach>
                                         </ul>
                                     </nav>
                                 </div>

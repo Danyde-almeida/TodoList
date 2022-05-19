@@ -20,6 +20,13 @@ public class AccountController {
 
     /* Partie Connexion d'un utilisateur */
 
+    @GetMapping(value = "/")
+    public ModelAndView redirectToLogin() {
+        ModelAndView model = new ModelAndView();
+        model.setViewName("redirect:login");
+        return model;
+    }
+
     @GetMapping(value = "/login")
     public String showLogin() {
         return "login";
@@ -46,7 +53,7 @@ public class AccountController {
             //On récupère tout les users de la BDD sauf le user connecté
             List<Users> users = loginService.getAllUser();
             users.remove(user);
-            session.setAttribute("id", user.getLogin());
+            session.setAttribute("id", user.getUserId());
             session.setAttribute("username", user.getLogin());
             session.setAttribute("list_users", users);
             model.setViewName("redirect:todo-list");
@@ -77,9 +84,10 @@ public class AccountController {
             user.setNom(nom);
             user.setPrenom(prenom);
             loginService.creeCompte(user);
+            user = loginService.getUser(login);
             List<Users> users = loginService.getAllUser();
             users.remove(user);
-            session.setAttribute("id", user.getLogin());
+            session.setAttribute("id", user.getUserId());
             session.setAttribute("username", user.getLogin());
             session.setAttribute("list_users", users);
             model.setViewName("redirect:todo-list");

@@ -16,10 +16,12 @@ public class TaskService {
     public boolean verifierTaskExistant(String nameTask, Date dateFin) {
         return taskRepository.existsByNameAndDateFin(nameTask, dateFin);
     }
-
     public void creeTask(Task t) {
         taskRepository.save(t);
     }
+    public Task getTask(long id){ return taskRepository.getByTaskId(id);}
+
+
 
 
 }

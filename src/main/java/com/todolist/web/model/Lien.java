@@ -1,5 +1,7 @@
 package com.todolist.web.model;
 
+import org.apache.catalina.User;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -7,41 +9,36 @@ import java.util.Date;
 @IdClass(DoubleId.class)
 public class Lien {
     @Id
-    @ManyToOne
-    private Users user;
-
+    @Column(name="userId")
+    private long userId;
     @Id
-    @ManyToOne
-    private Task task;
-
-    @Column(length = 30)
-    private Date dateCreation;
-
-    public Users getUser() {
-        return user;
+    @Column(name="taskId")
+    private long taskId;
+    public Lien(long user, long task){
+        super();
+        this.userId = user;
+        this.taskId = task;
+    }
+    public Lien() {
+        super();
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public long getUserId() {
+        return userId;
+    }
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public Task getTask() {
-        return task;
+    public long getTaskId() {
+        return taskId;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
-    }
-
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
     }
 
     public String toString() {
-        return "TODO";
+        return "user: " + userId + ", task: " + taskId;
     }
 }

@@ -3,29 +3,32 @@ package com.todolist.web.model;
 import java.io.Serializable;
 
 public class DoubleId implements Serializable {
-    private Task task;
-    private Users user;
+    private long userId;
+    private long taskId;
 
     // default constructor
-    public DoubleId(Task task, Users user) {
-        this.task = task;
-        this.user = user;
+    public DoubleId() {
     }
 
-    public Task getTask() {
-        return task;
+    public DoubleId(long userId, long taskId) {
+        this.userId = userId;
+        this.taskId = taskId;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public long getTaskId() {
+        return taskId;
     }
 
-    public Users getUser() {
-        return user;
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
 }

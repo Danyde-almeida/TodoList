@@ -8,24 +8,22 @@ import java.util.List;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idTask;
-
+    private long taskId;
     @Column(length = 30)
     private String name;
-
     private Date dateDebut;
     private Date dateFin;
     private boolean status;
     private boolean shared;
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "taskId")
     private List<Lien> lien;
 
-    public int getIdTask() {
-        return idTask;
+    public long getTaskId() {
+        return taskId;
     }
 
-    public void setIdTask(int idTask) {
-        this.idTask = idTask;
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
     }
 
     public String getName() {
@@ -77,6 +75,6 @@ public class Task {
     }
 
     public String toString() {
-        return "TODO";
+        return "id = " + taskId + ", name = " + name + ", dateDebut = " + dateDebut + ", dateFin = " + dateFin + ", status = " + status + ", shared = " + shared;
     }
 }

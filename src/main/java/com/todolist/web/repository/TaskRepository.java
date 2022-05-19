@@ -10,4 +10,5 @@ import java.util.Date;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, String> {
     public boolean existsByNameAndDateFin(String name, Date dateFin);
+    public Task getByTaskId(long id);
 }

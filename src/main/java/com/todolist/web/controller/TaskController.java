@@ -18,7 +18,6 @@ import java.util.Date;
 
 @Controller
 public class TaskController {
-
     @Autowired
     TaskService taskService;
 
@@ -26,9 +25,12 @@ public class TaskController {
     public String showTodoList() {
         return "todo-list";
     }
-
-    @PostMapping(value = "/todo-list")
-    public ModelAndView register(@RequestParam String nameTask, @RequestParam String dateFin, HttpSession session) throws ParseException {
+    @GetMapping(value = "/addTask")
+    public String showAddTask() {
+        return "addTask";
+    }
+    @PostMapping(value = "/addTask")
+    public ModelAndView addTask(@RequestParam String nameTask, @RequestParam String dateFin) throws ParseException {
         ModelAndView model = new ModelAndView();
         Date dateEnd = new SimpleDateFormat("yyyy-MM-dd").parse(dateFin);
         if (!taskService.verifierTaskExistant(nameTask, dateEnd)) {
@@ -40,9 +42,10 @@ public class TaskController {
             task.setStatus(false);
             task.setStatus(false);
             taskService.creeTask(task);
-
+            //redirection
+            model.addObject("idTask", task.getTaskId());
+            model.setViewName("redirect:lien");
         }
         return model;
     }
-
 }

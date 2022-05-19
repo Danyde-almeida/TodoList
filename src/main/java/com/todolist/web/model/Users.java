@@ -7,7 +7,7 @@ import java.util.List;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    private long userId;
 
     @Column(length = 50)
     private String login;
@@ -21,35 +21,30 @@ public class Users {
     @Column(length = 50)
     private String prenom;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "userId")
     private List<Lien> lien;
 
     public Users() {
         super();
     }
-
-    public int getIdUser() {
-        return idUser;
+    public long getUserId() {
+        return userId;
     }
-    public void setIdUser(int idUser ) {
-        this.idUser = idUser;
+    public void setUserId(long userId ) {
+        this.userId = userId;
     }
     public String getLogin() {
         return login;
     }
-
     public void setLogin(String login) {
         this.login = login;
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String mp) {
         this.password = mp;
     }
-
     public String getNom() {
         return nom;
     }
@@ -63,7 +58,14 @@ public class Users {
         this.prenom = prenom;
     }
 
+    public List<Lien> getLien() {
+        return lien;
+    }
+
+    public void setLien(List<Lien> lien) {
+        this.lien = lien;
+    }
     public String toString() {
-        return "Users: [id = " + idUser + " login = " + login + " + nom = " + nom + " prenom = "+ prenom + " ]";
+        return "Users: [id = " + userId + " login = " + login + " + nom = " + nom + " prenom = "+ prenom + " ]";
     }
 }
