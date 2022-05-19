@@ -48,9 +48,7 @@ public class AccountController {
             model.setViewName("login");
             return model;
         } else if (loginService.verifierAuthentif(login, password)) {
-            //On récupère le user qui se connecte a la bd
             Users user = loginService.getUser(login);
-            //On récupère tout les users de la BDD sauf le user connecté
             List<Users> users = loginService.getAllUser();
             users.remove(user);
             session.setAttribute("id", user.getUserId());

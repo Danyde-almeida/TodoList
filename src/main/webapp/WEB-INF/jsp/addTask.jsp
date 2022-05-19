@@ -47,6 +47,7 @@
 
 <%@ include file="navbar.jsp"%>
 
+<form method="post">
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
@@ -55,7 +56,6 @@
                     <div class="col-md-6 col-lg-6 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Ajouter une Task à votre ToDo-List</h5>
-                            <form method="post">
                                 <div class="form-outline mb-4">
                                     <label class="form-label" for="nameTask">Nom de la tache:</label>
                                     <input type="text" id="nameTask" value="${nameTask}" name="nameTask"
@@ -71,13 +71,11 @@
                                 <div class="pt-1 mb-4">
                                     <button class="btn btn-dark btn-lg btn-block">Valider</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Partagée à:</h5>
-                            <form method="post">
                                 <div class="scroll">
                                     <nav>
                                         <ul>
@@ -86,14 +84,13 @@
                                             </c:if>
                                             <c:forEach var="user" items="${sessionScope.list_users}">
                                                 <li>
-                                                    <input type="checkbox" id="${user.idUser}" name="${user.idUser}">
-                                                    <label for="${user.idUser}">${user.nom} ${user.prenom}</label>
+                                                    <input type="checkbox" value="${user.userId}" id="${user.userId}" name="users">
+                                                    <label for="${user.userId}">${user.nom} ${user.prenom}</label>
                                                 </li>
                                             </c:forEach>
                                         </ul>
                                     </nav>
                                 </div>
-                            </form>
                         </div>
                     </div>
 
@@ -102,5 +99,7 @@
         </div>
     </div>
 </div>
+</form>
+
 </body>
 </html>

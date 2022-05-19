@@ -12,7 +12,6 @@ public class AccountService {
 
     @Autowired
     AccountRepository accountRepository;
-
     public boolean emptyLogin(String login) {
         return login.equals("");
     }

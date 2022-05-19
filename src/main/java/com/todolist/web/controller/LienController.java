@@ -13,30 +13,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class LienController {
 
     @Autowired
     LienService lienService;
-    @Autowired
-    AccountService accountService;
-    @Autowired
-    TaskService taskService;
-
 
     @GetMapping(value = "/lien")
-    public ModelAndView showLien(HttpSession session, @RequestParam long idTask) {
+    public ModelAndView showLien(HttpSession session, @RequestParam long idTask, @RequestParam(defaultValue = "") List<String> SharedPersons) {
         ModelAndView model = new ModelAndView();
-        System.out.println(session.getAttribute("id"));
         long idUser = (long) session.getAttribute("id");
-        System.out.println(idUser);
         Lien lien = new Lien(idUser,idTask);
         lienService.creeLien(lien);
-
+        if (!SharedPersons.isEmpty()) {
+            for (String s : SharedPersons) {
+                idUser = Long.parseLong(s);
+                lien = new Lien(idUser, idTask);
+                lienService.creeLien(lien);
+            }
+        }
         //Afficher un message de validation
-        model.addObject("message", "Votre tache a été enregistrée");
-        model.setViewName("redirect:addTask");
+        model.setViewName("redirect:todo-list");
         return model;
     }
 
