@@ -23,4 +23,7 @@ public class TaskService {
     public Task getTask(long taskId){ return taskRepository.getByTaskId(taskId);}
     public List<Task> getAllTaskByShared(long userId,boolean bool){ return taskRepository.findAllByShared(userId, bool);}
 
+    public void updateTasks(Task task){
+        taskRepository.updateTaskByTaskId(task.getTaskId(), task.isStatus());
+    }
 }

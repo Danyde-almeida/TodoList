@@ -9,6 +9,8 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long taskId;
+
+    private long creatorId;
     @Column(length = 30)
     private String name;
     private Date dateDebut;
@@ -24,6 +26,14 @@ public class Task {
 
     public void setTaskId(long taskId) {
         this.taskId = taskId;
+    }
+
+    public long getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(long creatorId) {
+        this.creatorId = creatorId;
     }
 
     public String getName() {

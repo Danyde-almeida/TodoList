@@ -31,21 +31,24 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-        li{
-            list-style: none;
-        }
-        .li-shared{
-            list-style: circle;
-        }
-        .text{
-            padding-right: 1% ;
-        }
-        div.scrolladd {
+        div.scrollAdd {
             background-color: white;
             width: 100%;
-            height: 200px;
+            height: 222px;
             overflow-x: hidden;
             overflow-y: auto;
+        }
+        li{
+            list-style: none;
+            margin-bottom: 1%;
+        }
+        .checkbox{
+            padding-left: 1%;
+            padding-right: 1%;
+        }
+        .validated{
+            background-color: lightgreen;
+            border-radius: 12px;
         }
     </style>
 </head>
@@ -53,7 +56,7 @@
 <body>
 
 <%@ include file="navbar.jsp"%>
-
+<form method="post">
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col col-xl-10">
@@ -62,7 +65,6 @@
                     <div class="col-md-6 col-lg-6 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Todo List personelle:</h5>
-                            <form method="post">
                                 <div class="scroll">
                                     <nav >
                                         <ul>
@@ -70,40 +72,74 @@
                                                 <h4>Aucune tache enregistrée</h4>
                                             </c:if>
                                             <c:forEach var="task" items="${taskListNotShared}">
-                                                <li>
-                                                    <input type="checkbox" id="${task.taskId}" name="${task.taskId}">
-                                                    <label for="${task.taskId}">${task.name}</label>
-                                                </li>
+                                                <c:if test='${task.status == false }'>
+                                                    <li>
+                                                        <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate">
+                                                        <label for="${task.taskId}">-> Nom de la tache: ${task.name}
+                                                            <br>-> Date de début de la tache: ${task.dateDebut}
+                                                            <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test='${task.status == true }'>
+                                                    <li class="validated checkbox">
+                                                        <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate" checked>
+                                                        <label for="${task.taskId}">-> Nom de la tache: ${task.name}
+                                                            <br>-> Date de début de la tache: ${task.dateDebut}
+                                                            <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                    </li>
+                                                </c:if>
                                             </c:forEach>
                                         </ul>
                                     </nav>
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Todo List partagée:</h5>
-                            <form method="post">
-                                <div class="scroll">
+                                <div class="scrollAdd">
                                     <nav >
                                         <ul>
                                             <c:if test='${taskListShared == [] }'>
                                                 <h4>Aucune tache enregistrée</h4>
                                             </c:if>
                                             <c:forEach var="task" items="${taskListShared}">
-                                                <li class="li-shared">
-                                                    <span id="${task.name}">
-                                                        <span class="text">${task.name}</span>
-                                                        <i class='bi bi-info-circle'></i>
-                                                    </span>
-                                                </li>
+                                                <c:if test='${task.status == false }'>
+                                                    <li>
+                                                        <c:if test='${task.creatorId == sessionScope.id }'>
+                                                            <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate">
+                                                        </c:if>
+                                                        <label for="${task.taskId}">-> Nom de la tache: ${task.name}
+                                                            <br>-> Date de début de la tache: ${task.dateDebut}
+                                                            <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                    </li>
+                                                </c:if>
+                                                <c:if test='${task.status == true }'>
+                                                    <li class="validated checkbox">
+                                                        <c:if test='${task.creatorId == sessionScope.id}'>
+                                                            <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate" checked>
+                                                            <label for="${task.taskId}">-> Nom de la tache: ${task.name}
+                                                                <br>-> Date de début de la tache: ${task.dateDebut}
+                                                                <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                        </c:if>
+                                                        <c:if test='${task.creatorId != sessionScope.id}'>
+                                                            <input hidden="true" class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate" checked>
+                                                            <label>-> Nom de la tache: ${task.name}
+                                                                <br>-> Date de début de la tache: ${task.dateDebut}
+                                                                <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                        </c:if>
+                                                    </li>
+                                                </c:if>
                                             </c:forEach>
                                         </ul>
                                     </nav>
                                 </div>
-                            </form>
-                        </div>
+                            <div class="pt-1 mb-4">
+                            <c:if test='${taskListShared != [] || taskListNotShared !=[] }'>
+                                    <button class="btn btn-dark btn-lg btn-block">Valider</button>
+                            </c:if>
+                                </div>
+                            </div>
                     </div>
 
                 </div>
@@ -111,5 +147,6 @@
         </div>
     </div>
 </div>
+</form>
 </body>
 </html>

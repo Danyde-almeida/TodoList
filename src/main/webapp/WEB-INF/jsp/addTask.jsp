@@ -30,16 +30,17 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
-        li{
-            list-style: none;
-        }
-        div.scrolladd {
+        div.scrollValidation {
             background-color: white;
             width: 100%;
-            height: 200px;
+            height: 157px;
             overflow-x: hidden;
             overflow-y: auto;
         }
+        li{
+            list-style: none;
+        }
+
     </style>
 </head>
 
@@ -68,15 +69,12 @@
                                            class="form-control form-control-lg" required="required"/>
                                 </div>
                                 <br>
-                                <div class="pt-1 mb-4">
-                                    <button class="btn btn-dark btn-lg btn-block">Valider</button>
-                                </div>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Partagée à:</h5>
-                                <div class="scroll">
+                                <div class="scrollValidation">
                                     <nav>
                                         <ul>
                                             <c:if test='${sessionScope.list_users == [] }'>
@@ -91,6 +89,9 @@
                                         </ul>
                                     </nav>
                                 </div>
+                            <div class="pt-1 mb-4">
+                                <button class="btn btn-dark btn-lg btn-block">Valider</button>
+                            </div>
                         </div>
                     </div>
 
