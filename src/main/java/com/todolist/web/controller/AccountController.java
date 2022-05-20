@@ -27,6 +27,16 @@ public class AccountController {
         return model;
     }
 
+    @GetMapping(value = "/logout")
+    public ModelAndView logOut(HttpSession session) {
+        ModelAndView model = new ModelAndView();
+        session.removeAttribute("id");
+        session.removeAttribute("username");
+        session.removeAttribute("list_users");
+        model.setViewName("redirect:login");
+        return model;
+    }
+
     @GetMapping(value = "/login")
     public String showLogin() {
         return "login";
