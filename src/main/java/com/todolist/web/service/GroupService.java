@@ -21,6 +21,7 @@ public class GroupService {
     }
 
     public Groups getGroupById(long idGroup){ return groupRepository.getByGroupId(idGroup);}
+    public boolean existGroup(String str){return groupRepository.existsByName(str);}
 
 
 }

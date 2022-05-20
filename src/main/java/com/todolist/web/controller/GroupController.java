@@ -34,7 +34,7 @@ public class GroupController {
         ModelAndView model = new ModelAndView();
         Groups group = new Groups();
         group.setName(nameGroup);
-        if (!users.isEmpty()){
+        if (!users.isEmpty() && !groupService.existGroup(nameGroup)){
             groupService.creeGroup(group);
             model.addObject("groupUsers",users);
             model.addObject("idGroup",group.getGroupId());
