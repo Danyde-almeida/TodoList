@@ -84,7 +84,10 @@ public class TaskController {
     }
 
     @PostMapping(value = "/addTask")
-    public ModelAndView addTask(HttpSession session,@RequestParam String nameTask, @RequestParam String dateFin, @RequestParam(defaultValue = "") List<String> users) throws ParseException {
+    public ModelAndView addTask(HttpSession session,
+                                @RequestParam String nameTask,
+                                @RequestParam String dateFin,
+                                @RequestParam(defaultValue = "") List<String> users) throws ParseException {
         ModelAndView model = new ModelAndView();
         Date dateEnd = new SimpleDateFormat("yyyy-MM-dd").parse(dateFin);
         if (!taskService.verifierTaskExistant(nameTask, dateEnd)) {

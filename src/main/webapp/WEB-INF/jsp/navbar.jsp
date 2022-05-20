@@ -10,7 +10,7 @@
                     <a class="nav-link" href="/addTask">Ajouter une tache</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Ajouter un groupe</a>
+                    <a class="nav-link" href="/addGroup">Ajouter un groupe</a>
                 </li>
             </ul>
         </div>

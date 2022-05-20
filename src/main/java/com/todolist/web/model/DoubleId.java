@@ -3,6 +3,7 @@ package com.todolist.web.model;
 import java.io.Serializable;
 
 public class DoubleId implements Serializable {
+
     private long userId;
     private long taskId;
 

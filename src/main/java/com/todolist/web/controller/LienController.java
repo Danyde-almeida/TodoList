@@ -22,7 +22,9 @@ public class LienController {
     LienService lienService;
 
     @GetMapping(value = "/lien")
-    public ModelAndView showLien(HttpSession session, @RequestParam long idTask, @RequestParam(defaultValue = "") List<String> SharedPersons) {
+    public ModelAndView showLien(HttpSession session,
+                                 @RequestParam long idTask,
+                                 @RequestParam(defaultValue = "") List<String> SharedPersons) {
         ModelAndView model = new ModelAndView();
         long idUser = (long) session.getAttribute("id");
         Lien lien = new Lien(idUser,idTask);

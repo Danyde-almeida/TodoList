@@ -24,6 +24,9 @@ public class Users {
     @OneToMany(mappedBy = "userId")
     private List<Lien> lien;
 
+    @OneToMany(mappedBy = "userId")
+    private List<UsersInGroup> usersInGroups;
+
     public Users() {
         super();
     }
