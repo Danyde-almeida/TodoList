@@ -68,6 +68,12 @@ public class Users {
     public void setLien(List<Lien> lien) {
         this.lien = lien;
     }
+    public List<UsersInGroup> getUsersInGroups() {
+        return usersInGroups;
+    }
+    public void setUsersInGroups(List<UsersInGroup> usersInGroups) {
+        this.usersInGroups = usersInGroups;
+    }
     public String toString() {
         return "Users: [id = " + userId + " login = " + login + " + nom = " + nom + " prenom = "+ prenom + " ]";
     }

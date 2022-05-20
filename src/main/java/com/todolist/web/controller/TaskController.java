@@ -1,14 +1,17 @@
 package com.todolist.web.controller;
 
+import com.todolist.web.model.Groups;
 import com.todolist.web.model.Task;
 import com.todolist.web.model.Users;
-import com.todolist.web.service.AccountService;
+import com.todolist.web.model.UsersInGroup;
+import com.todolist.web.repository.UsersInGroupsRepository;
+import com.todolist.web.service.GroupService;
 import com.todolist.web.service.TaskService;
+import com.todolist.web.service.UsersInGroupsServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,6 +27,9 @@ import java.util.List;
 public class TaskController {
     @Autowired
     TaskService taskService;
+
+    @Autowired
+    GroupService groupService;
 
     /*
    *****************************************************************
@@ -53,7 +59,6 @@ public class TaskController {
         for (Task t: taskListNotShared) {
             if (!t.isStatus() && validate.contains(String.valueOf(t.getTaskId()))){
                 t.setStatus(true);
-                System.out.println(t);
                 taskService.updateTasks(t);
             }else if (t.isStatus() && !validate.contains(String.valueOf(t.getTaskId()))){
                 t.setStatus(false);
@@ -79,15 +84,29 @@ public class TaskController {
     *****************************************************************
      */
     @GetMapping(value = "/addTask")
-    public String showAddTask() {
-        return "addTask";
+    public ModelAndView showAddTask(HttpSession session) {
+        ModelAndView model = new ModelAndView();
+        Long idUser = (Long) session.getAttribute("id");
+        List<Groups> allGroups = groupService.allGroup();
+        List<Groups> groups = new ArrayList<>();
+        for (Groups g: allGroups) {
+            for (UsersInGroup uig: g.getUsersInGroups()) {
+                if (uig.getUserId() == idUser){
+                    groups.add(g);
+                }
+            }
+        }
+        model.addObject("groupList",groups);
+        model.setViewName("addTask");
+        return model;
     }
 
     @PostMapping(value = "/addTask")
     public ModelAndView addTask(HttpSession session,
                                 @RequestParam String nameTask,
                                 @RequestParam String dateFin,
-                                @RequestParam(defaultValue = "") List<String> users) throws ParseException {
+                                @RequestParam(defaultValue = "") List<String> users,
+                                @RequestParam(defaultValue = "") List<String> group) throws ParseException {
         ModelAndView model = new ModelAndView();
         Date dateEnd = new SimpleDateFormat("yyyy-MM-dd").parse(dateFin);
         if (!taskService.verifierTaskExistant(nameTask, dateEnd)) {
@@ -98,7 +117,20 @@ public class TaskController {
             task.setDateDebut(new Date());
             task.setDateFin(dateEnd);
             task.setStatus(false);
-            if (users.isEmpty())
+            if (!group.isEmpty()) {
+                String idUser = String.valueOf(session.getAttribute("id"));
+                for (String val: group) {
+                    Long idGroup = Long.valueOf(val);
+                    Groups groups = groupService.getGroupById(idGroup);
+                    for (UsersInGroup user: groups.getUsersInGroups()) {
+                        String str = String.valueOf(user.getUserId());
+                        if (!users.contains(str) && !str.equals(idUser)){
+                            users.add(str);
+                        }
+                    }
+                }
+            }
+            if (users.isEmpty() && group.isEmpty())
                 task.setShared(false);
             else{
                 task.setShared(true);

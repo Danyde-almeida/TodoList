@@ -34,7 +34,7 @@ public class UsersInGroupController {
             }
         }
         //Afficher un message de validation
-        model.setViewName("redirect:todo-list");
+        model.setViewName("redirect:addTask");
         return model;
     }
 

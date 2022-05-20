@@ -20,10 +20,10 @@
 <form method="post">
 <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col col-xl-10">
+        <div class="col col-xl-12">
             <div class="card" style="border-radius: 1rem;">
                 <div class="row g-0">
-                    <div class="col-md-6 col-lg-6 d-flex align-items-center">
+                    <div class="col-md-6 col-lg-4 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
                             <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Ajouter une Task à votre ToDo-List</h5>
                                 <div class="form-outline mb-4">
@@ -40,30 +40,49 @@
                                 <br>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-6 d-flex align-items-center">
+                    <div class="col-md-6 col-lg-4 d-flex align-items-center">
                         <div class="card-body p-4 p-lg-5 text-black">
-                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Partagée à:</h5>
-                                <div class="scrollValidation">
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Partagée à un groupe:</h5>
+                                <div class="scrollAdd">
                                     <nav>
                                         <ul>
-                                            <c:if test='${sessionScope.list_users == [] }'>
+                                            <c:if test='${groupList == [] }'>
                                                 <h4>Aucune personne disponible</h4>
                                             </c:if>
-                                            <c:forEach var="user" items="${sessionScope.list_users}">
+                                            <c:forEach var="group" items="${groupList}">
                                                 <li>
-                                                    <input type="checkbox" value="${user.userId}" id="${user.userId}" name="users">
-                                                    <label for="${user.userId}">${user.nom} ${user.prenom}</label>
+                                                    <input type="checkbox" value="${group.groupId}" id="${group.name}" name="group">
+                                                    <label for="${group.name}">${group.name}</label>
                                                 </li>
                                             </c:forEach>
                                         </ul>
                                     </nav>
                                 </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5 text-black">
+                            <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Partagée à des gens:</h5>
+                            <div class="scrollValidation">
+                                <nav>
+                                    <ul>
+                                        <c:if test='${sessionScope.list_users == [] }'>
+                                            <h4>Aucune groupe disponible</h4>
+                                        </c:if>
+                                        <c:forEach var="user" items="${sessionScope.list_users}">
+                                            <li>
+                                                <input type="checkbox" value="${user.userId}" id="${user.nom}" name="users">
+                                                <label for="${user.nom}">${user.nom} ${user.prenom}</label>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                </nav>
+                            </div>
                             <div class="pt-1 mb-4">
                                 <button class="btn btn-dark btn-lg btn-block">Valider</button>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
