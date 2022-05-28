@@ -1,5 +1,7 @@
 package com.todolist.web.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -11,9 +13,11 @@ public class Task {
     private long taskId;
 
     private long creatorId;
-    @Column(length = 30)
+    @Column(length = 50)
     private String name;
+    @JsonFormat(pattern = "dd/MM/yyy")
     private Date dateDebut;
+    @JsonFormat(pattern = "dd/MM/yyy")
     private Date dateFin;
     private boolean status;
     private boolean shared;

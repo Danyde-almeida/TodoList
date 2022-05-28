@@ -1,15 +1,11 @@
 package com.todolist.web.controller;
 
-import com.todolist.web.model.Groups;
+import com.todolist.web.model.Groupes;
 import com.todolist.web.model.Task;
-import com.todolist.web.model.Users;
 import com.todolist.web.model.UsersInGroup;
-import com.todolist.web.repository.UsersInGroupsRepository;
 import com.todolist.web.service.GroupService;
 import com.todolist.web.service.TaskService;
-import com.todolist.web.service.UsersInGroupsServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -87,9 +83,9 @@ public class TaskController {
     public ModelAndView showAddTask(HttpSession session) {
         ModelAndView model = new ModelAndView();
         Long idUser = (Long) session.getAttribute("id");
-        List<Groups> allGroups = groupService.allGroup();
-        List<Groups> groups = new ArrayList<>();
-        for (Groups g: allGroups) {
+        List<Groupes> allGroups = groupService.allGroup();
+        List<Groupes> groups = new ArrayList<>();
+        for (Groupes g: allGroups) {
             for (UsersInGroup uig: g.getUsersInGroups()) {
                 if (uig.getUserId() == idUser){
                     groups.add(g);
@@ -121,7 +117,7 @@ public class TaskController {
                 String idUser = String.valueOf(session.getAttribute("id"));
                 for (String val: group) {
                     Long idGroup = Long.valueOf(val);
-                    Groups groups = groupService.getGroupById(idGroup);
+                    Groupes groups = groupService.getGroupById(idGroup);
                     for (UsersInGroup user: groups.getUsersInGroups()) {
                         String str = String.valueOf(user.getUserId());
                         if (!users.contains(str) && !str.equals(idUser)){

@@ -1,6 +1,6 @@
 package com.todolist.web.service;
 
-import com.todolist.web.model.Groups;
+import com.todolist.web.model.Groupes;
 import com.todolist.web.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,14 +13,14 @@ public class GroupService {
     @Autowired
     GroupRepository groupRepository;
 
-    public void creeGroup(Groups g) {
+    public void creeGroup(Groupes g) {
         groupRepository.save(g);
     }
-    public List<Groups> allGroup() {
+    public List<Groupes> allGroup() {
         return groupRepository.findAll();
     }
 
-    public Groups getGroupById(long idGroup){ return groupRepository.getByGroupId(idGroup);}
+    public Groupes getGroupById(long idGroup){ return groupRepository.getByGroupId(idGroup);}
     public boolean existGroup(String str){return groupRepository.existsByName(str);}
 
 

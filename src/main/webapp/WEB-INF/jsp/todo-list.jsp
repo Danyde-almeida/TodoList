@@ -36,16 +36,44 @@
                                                     <li>
                                                         <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate">
                                                         <label for="${task.taskId}">-> Nom de la tache: ${task.name}
-                                                            <br>-> Date de début de la tache: ${task.dateDebut}
-                                                            <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                            <br>-> Date de début de la tache:
+                                                            <script>
+                                                                var date = new Date('${task.dateDebut}');
+                                                                var day = date.getDate();
+                                                                var month = date.getMonth();
+                                                                var year = date.getFullYear();
+                                                                document.write(day + '/'+ month + '/'+ year);
+                                                            </script>
+                                                            <br>-> Date de fin de la tache:  <script>
+                                                                var date = new Date('${task.dateFin}');
+                                                                var day = date.getDate();
+                                                                var month = date.getMonth();
+                                                                var year = date.getFullYear();
+                                                                document.write(day + '/'+ month + '/'+ year);
+                                                            </script>
+                                                        </label>
                                                     </li>
                                                 </c:if>
                                                 <c:if test='${task.status == true }'>
                                                     <li class="validated checkbox">
                                                         <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate" checked>
                                                         <label for="${task.taskId}">-> Nom de la tache: ${task.name}
-                                                            <br>-> Date de début de la tache: ${task.dateDebut}
-                                                            <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                            <br>-> Date de début de la tache:
+                                                            <script>
+                                                                var date = new Date('${task.dateDebut}');
+                                                                var day = date.getDate();
+                                                                var month = date.getMonth();
+                                                                var year = date.getFullYear();
+                                                                document.write(day + '/'+ month + '/'+ year);
+                                                            </script>
+                                                            <br>-> Date de fin de la tache:  <script>
+                                                                var date = new Date('${task.dateFin}');
+                                                                var day = date.getDate();
+                                                                var month = date.getMonth();
+                                                                var year = date.getFullYear();
+                                                                document.write(day + '/'+ month + '/'+ year);
+                                                            </script>
+                                                        </label>
                                                     </li>
                                                 </c:if>
                                             </c:forEach>
@@ -70,8 +98,22 @@
                                                             <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate">
                                                         </c:if>
                                                         <label for="${task.taskId}">-> Nom de la tache: ${task.name}
-                                                            <br>-> Date de début de la tache: ${task.dateDebut}
-                                                            <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                            <br>-> Date de début de la tache:
+                                                            <script>
+                                                                var date = new Date('${task.dateDebut}');
+                                                                var day = date.getDate();
+                                                                var month = date.getMonth();
+                                                                var year = date.getFullYear();
+                                                                document.write(day + '/'+ month + '/'+ year);
+                                                            </script>
+                                                            <br>-> Date de fin de la tache:  <script>
+                                                                var date = new Date('${task.dateFin}');
+                                                                var day = date.getDate();
+                                                                var month = date.getMonth();
+                                                                var year = date.getFullYear();
+                                                                document.write(day + '/'+ month + '/'+ year);
+                                                            </script>
+                                                        </label>
                                                     </li>
                                                 </c:if>
                                                 <c:if test='${task.status == true }'>
@@ -79,14 +121,42 @@
                                                         <c:if test='${task.creatorId == sessionScope.id}'>
                                                             <input class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate" checked>
                                                             <label for="${task.taskId}">-> Nom de la tache: ${task.name}
-                                                                <br>-> Date de début de la tache: ${task.dateDebut}
-                                                                <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                                <br>-> Date de début de la tache:
+                                                                <script>
+                                                                    var date = new Date('${task.dateDebut}');
+                                                                    var day = date.getDate();
+                                                                    var month = date.getMonth();
+                                                                    var year = date.getFullYear();
+                                                                    document.write(day + '/'+ month + '/'+ year);
+                                                                </script>
+                                                                <br>-> Date de fin de la tache:  <script>
+                                                                    var date = new Date('${task.dateFin}');
+                                                                    var day = date.getDate();
+                                                                    var month = date.getMonth();
+                                                                    var year = date.getFullYear();
+                                                                    document.write(day + '/'+ month + '/'+ year);
+                                                                </script>
+                                                            </label>
                                                         </c:if>
                                                         <c:if test='${task.creatorId != sessionScope.id}'>
                                                             <input hidden="true" class="checkbox" type="checkbox" id="${task.taskId}" value="${task.taskId}" name="validate" checked>
-                                                            <label>-> Nom de la tache: ${task.name}
-                                                                <br>-> Date de début de la tache: ${task.dateDebut}
-                                                                <br>-> Date de fin de la tache: ${task.dateFin}</label>
+                                                            <label for="${task.taskId}">-> Nom de la tache: ${task.name}
+                                                                <br>-> Date de début de la tache:
+                                                                <script>
+                                                                    var date = new Date('${task.dateDebut}');
+                                                                    var day = date.getDate();
+                                                                    var month = date.getMonth();
+                                                                    var year = date.getFullYear();
+                                                                    document.write(day + '/'+ month + '/'+ year);
+                                                                </script>
+                                                                <br>-> Date de fin de la tache:  <script>
+                                                                    var date = new Date('${task.dateFin}');
+                                                                    var day = date.getDate();
+                                                                    var month = date.getMonth();
+                                                                    var year = date.getFullYear();
+                                                                    document.write(day + '/'+ month + '/'+ year);
+                                                                </script>
+                                                            </label>
                                                         </c:if>
                                                     </li>
                                                 </c:if>

@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Groups {
+public class Groupes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class Groups {
     @OneToMany(mappedBy = "groupId")
     private List<UsersInGroup> usersInGroups;
 
-    public Groups() {
+    public Groupes() {
         super();
     }
 
@@ -45,6 +45,6 @@ public class Groups {
     }
 
     public String toString() {
-        return "Groups: [id = " + groupId + " name = " + name + " ]";
+        return "Groupes: [id = " + groupId + " name = " + name + " ]";
     }
 }
