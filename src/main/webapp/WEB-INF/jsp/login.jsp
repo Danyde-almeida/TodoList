@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Polytech Chat 2022</title>
+    <title>Polytech Todo 2022</title>
 
     <%@ include file="links.jsp"%>
 
